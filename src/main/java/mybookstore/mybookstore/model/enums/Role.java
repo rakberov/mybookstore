@@ -1,4 +1,6 @@
 package mybookstore.mybookstore.model.enums;
 
-public class Role {
+public enum  Role {
+    User,
+    Admin
 }

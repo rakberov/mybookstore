@@ -1,4 +1,7 @@
 package mybookstore.mybookstore.repository;
 
-public class UserRepository {
+import mybookstore.mybookstore.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
 }
