@@ -1,13 +1,12 @@
 package mybookstore.mybookstore.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import mybookstore.mybookstore.model.enums.Gender;
 import mybookstore.mybookstore.model.enums.Role;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -27,8 +26,12 @@ public class User {
     private String name;
     private String surname;
     @NotNull
+    @Length(min = 5)
+    @ToString.Exclude
     private String password;
     @NotNull
+    @Length(min = 5)
+    @ToString.Exclude
     private String confirmPassword;
     private String phone;
     @Enumerated(EnumType.STRING)
