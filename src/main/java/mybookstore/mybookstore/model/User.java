@@ -14,8 +14,7 @@ import javax.validation.constraints.NotNull;
 @Builder
 @Data
 @Entity
-@Table(name = "user", uniqueConstraints = @UniqueConstraint(name = "unique_constraint",
-columnNames = {"email"}))
+@Table(name = "user", uniqueConstraints = @UniqueConstraint(name = "unique_constraint", columnNames = {"email"}))
 public class User {
 
     @Id
