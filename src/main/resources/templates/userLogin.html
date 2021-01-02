@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Store</title>
+
+    <style>
+        .center {
+            padding: 20px;
+            margin: 0 auto;
+            text-align: -webkit-center;
+        }
+    </style>
+
 </head>
 <body>
 
-<h1>User Login</h1>
+<h1 class="center"> User Login</h1>
 
-<form th:action="@{/user/login}" method="post">
-    <p>Email: <input type="text" th:name="email" placeholder="email"></p>
-    <p>Password: <input type="password" th:name="password" placeholder="password"></p>
+<form th:action="@{/user/login}" method="post" class="center">
 
-    <p><input type="submit" value="Login">
-        <input type="reset" value="Reset">
-    </p>
+    <table class="center">
+        <tr>
+            <td>Email</td>
+            <td><input type="text" th:name="email" placeholder="Email"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" th:name="password" placeholder="Password"></td>
+        </tr>
+        <tr>
+        <td class="center">
+            <input type="submit" value="Login">
+            <input type="reset" value="Reset">
+        </td>
+        </tr>
+
+    </table>
+
+</form>
 
 </body>
 </html>
