@@ -7,6 +7,7 @@ public enum  Genre {
     Detective,
     Fantasy,
     Fiction,
-    Horror
+    Horror,
+    Science
 
 }

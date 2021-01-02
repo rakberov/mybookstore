@@ -1,5 +1,6 @@
 package mybookstore.mybookstore.controller;
 
+import mybookstore.mybookstore.model.Book;
 import mybookstore.mybookstore.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,4 +27,9 @@ public class PageController {
         return "userLogin";
     }
 
+    @GetMapping(value = {"/bookCreate"})
+    public String bookCreate(Model model) {
+        model.addAttribute("book", new Book());
+        return "bookCreate";
+    }
 }

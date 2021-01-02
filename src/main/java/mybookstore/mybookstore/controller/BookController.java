@@ -1,7 +1,9 @@
 package mybookstore.mybookstore.controller;
 
 import lombok.RequiredArgsConstructor;
+import mybookstore.mybookstore.model.Book;
 import mybookstore.mybookstore.model.User;
+import mybookstore.mybookstore.service.BookService;
 import mybookstore.mybookstore.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,19 +19,11 @@ import javax.validation.constraints.NotNull;
 @RequestMapping(value = "/book")
 public class BookController {
 
-    private final UserService loginService;
+    private final BookService bookService;
 
-    @PostMapping(value = "/register")
-    public String register(@ModelAttribute @Valid User user){
-        loginService.register(user);
-        return "home";
-    }
-
-    @PostMapping(value = "/login")
-    public String login(@NotNull @RequestParam("email") String email,
-                        @NotNull @RequestParam("password") String password){
-        System.out.println(email + " " + password);
-        loginService.login(email, password);
+    @PostMapping(value = "/create")
+    public String create (@ModelAttribute @Valid Book book){
+        bookService.create(book);
         return "home";
     }
 
