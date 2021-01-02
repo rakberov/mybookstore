@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+
+    <style>
+        table td{
+            vertical-align: top;
+            border: solid 1px;
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+<h1>Error Page</h1>
+
+<table>
+
+
+    <tr>
+        <td>Datetime</td>
+        <td th:text="${datetime}"></td>
+    </tr>
+    <tr>
+        <td>Url</td>
+        <td th:text="${url}"></td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td th:text="${status}"></td>
+    </tr>
+    <tr>
+        <td>Message</td>
+        <td th:text="${message}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
