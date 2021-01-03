@@ -9,6 +9,7 @@ import mybookstore.mybookstore.exception.PasswordMismatchException;
 import mybookstore.mybookstore.model.User;
 import mybookstore.mybookstore.model.enums.Role;
 import mybookstore.mybookstore.repository.UserRepository;
+import mybookstore.mybookstore.service.SessionService;
 import mybookstore.mybookstore.service.UserService;
 import mybookstore.mybookstore.util.PasswordHasher;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     private final PasswordHasher passwordHasher;
     private final UserRepository userRepository;
+    private final SessionService sessionService;
 
     @Override
     public User register(User user) {
@@ -50,16 +52,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String email, String password) {
 
+        log.info("User login start email: {}", email);
+
         User user = null;
         try {
-
             user = userRepository.findByEmail(email)
                     .orElseThrow(() -> new NotFoundException("email : " + email + " not found "));
 
             String hashPassword = passwordHasher.hashPassword(password);
             if (!hashPassword.equals(user.getConfirmPassword()))
                 throw new AccessDeniedException("Password incorrect");
-            log.info("User found: {}", user);
+
+            sessionService.create(user);
+
+            log.info("User login end email: {}", email);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
