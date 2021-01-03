@@ -6,10 +6,8 @@ import mybookstore.mybookstore.model.User;
 import mybookstore.mybookstore.service.BookService;
 import mybookstore.mybookstore.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -22,10 +20,27 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping(value = "/create")
-    public String create (@ModelAttribute @Valid Book book){
+    public String create(@ModelAttribute @Valid Book book) {
         bookService.create(book);
-        return "home";
+        return "redirect:/home";
     }
 
+    @GetMapping(value = "/findByIsbn")
+    public String findByIsbn(Model model, @RequestParam("isbn") String isbn) {
+        Book book = bookService.getByIsbn(isbn);
+        model.addAttribute("book", book);
+        return "bookUpdate";
+    }
 
+    @PostMapping(value = "/update", params = "action=Update")
+    public String update(@ModelAttribute @Valid Book book) {
+        bookService.update(book);
+        return "redirect:/home";
+    }
+
+    @PostMapping(value = "/update", params = "action=Delete")
+    public String delete(@ModelAttribute @Valid Book book) {
+        bookService.delete(book);
+        return "redirect:/home";
+    }
 }

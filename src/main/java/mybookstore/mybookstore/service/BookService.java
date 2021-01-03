@@ -10,6 +10,8 @@ public interface BookService {
 
     void update(Book book);
 
+    void delete(Book book);
+
     Book getByIsbn(String isbn);
 
     List<Book> getAllBook();

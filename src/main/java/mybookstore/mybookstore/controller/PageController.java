@@ -1,15 +1,18 @@
 package mybookstore.mybookstore.controller;
 
+import lombok.RequiredArgsConstructor;
 import mybookstore.mybookstore.model.Book;
 import mybookstore.mybookstore.model.User;
+import mybookstore.mybookstore.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 
 @Controller
+@RequiredArgsConstructor
 public class PageController {
+
 
     @GetMapping(value = {"/", "/home"})
     public String home() {
@@ -31,5 +34,11 @@ public class PageController {
     public String bookCreate(Model model) {
         model.addAttribute("book", new Book());
         return "bookCreate";
+    }
+
+    @GetMapping(value = {"/bookUpdate"})
+    public String bookUpdate(Model model) {
+        model.addAttribute("book", new Book());
+        return "bookUpdate";
     }
 }
