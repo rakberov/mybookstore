@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mybookstore.mybookstore.model.enums.Genre;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,7 @@ public class Book {
     private String isbn;
     @NotNull
     private BigDecimal price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate publishDate;
     private Integer pageSize;
     private String description;

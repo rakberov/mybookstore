@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+
+</head>
+<body>
+<h1 style="text-align: center">Welcome to Book Store</h1>
+
+<div style="
+    border: 1px;
+    padding: 5px;
+    margin-bottom: 20px;
+    background: #f0e68c;
+    display: flex;
+    justify-content: space-between;">
+
+
+
+        <div style="display: inline-block">
+            <a th:href="@{/}">Home</a>
+            &nbsp;
+            <a th:href="@{/loginForm}">Login</a>
+            &nbsp;
+            <a th:href="@{/registerForm}">Register</a>
+            &nbsp;
+            <a th:href="@{/bookManagementForm}">Book Management</a>
+        </div>
+
+        <div style="text-align: right">
+            <a th:href="@{/cardPage}">My Card</a>
+            &nbsp;
+            <a th:href="@{/ordersPage}">My Orders</a>
+            &nbsp;
+            <a th:href="@{/user/logout}">Logout</a>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
