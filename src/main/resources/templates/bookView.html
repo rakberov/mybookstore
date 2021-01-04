@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+
+    <style>
+        .center {
+            padding: 20px;
+            margin: 0 auto;
+            text-align: -webkit-center;
+        }
+    </style>
+
+</head>
+<body>
+
+<th:block th:include="/header"></th:block>
+
+<h1 class="center"> Book Details </h1>
+
+<table class="center">
+    <tr th:id="${book.id}" th:object="${book}">
+        <td>
+            <img style="width: 120px; height: 150px"
+                 th:src="@{${'/resources/images/' + book.imageName}}"/>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td th:text="${book.name}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${'by ' + book.author}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${book.price + ' USD'}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${book.pageSize + ' pages'}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${book.publishDate + ' date'}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${book.description}"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

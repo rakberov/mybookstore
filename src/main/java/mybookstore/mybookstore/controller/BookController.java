@@ -43,4 +43,11 @@ public class BookController {
         bookService.delete(book);
         return "redirect:/home";
     }
+
+    @GetMapping(value = "/view")
+    public String view(Model model, @RequestParam("isbn") String isbn) {
+        Book book = bookService.getByIsbn(isbn);
+        model.addAttribute("book", book);
+        return "bookView";
+    }
 }

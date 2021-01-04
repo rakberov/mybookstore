@@ -25,7 +25,7 @@
             &nbsp;
             <a th:href="@{/registerForm}">Register</a>
             &nbsp;
-            <a th:href="@{/bookManagementForm}">Book Management</a>
+            <a th:if="${#response.getHeader('Role') == 'Admin'}" th:href="@{/bookManagementForm}">Book Management</a>
         </div>
 
         <div style="text-align: right">

@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Store</title>
+    <style>
+        .center {
+            padding: 20px;
+            margin: 0 auto;
+            text-align: -webkit-center;
+        }
+    </style>
 </head>
 
 <body>
 <th:block th:include="/header"></th:block>
 
-<h1>Welcome Book Store</h1>
+<table class="center"
+<tr th:id="${book.id}" th:each="book : ${books}">
+    <td><a th:href="@{/book/view(isbn=${book.isbn})}">
+        <img style="width: 120px; height: 150px"
+             th:src="@{${'/resources/images/' + book.imageName}}"/>
+    </a>
+    </td>
+    <td>
+        <table>
+            <tr>
+                <td th:text="${book.name}"></td>
+            </tr>
+            <tr>
+                <td th:text="${'by ' + book.author}"></td>
+            </tr>
+            <tr>
+                <td th:text="${book.price + ' USD'}"></td>
+            </tr>
+
+
+        </table>
+    </td>
+</tr>
 
 </body>
 </html>

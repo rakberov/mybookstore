@@ -27,6 +27,8 @@ public class Book {
     @NotNull
     private String name;
     @NotNull
+    private String author;
+    @NotNull
     @Length(min = 13, max = 13)
     private String isbn;
     @NotNull
@@ -38,7 +40,7 @@ public class Book {
     @Enumerated(value = EnumType.STRING)
     @NotNull
     private Genre genre;
-
+    private String imageName;
 
 
 }

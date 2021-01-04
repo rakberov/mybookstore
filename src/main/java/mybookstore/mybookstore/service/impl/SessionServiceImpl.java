@@ -11,6 +11,7 @@ import mybookstore.mybookstore.service.SessionService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -22,13 +23,24 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public Session create(User user) {
+        inactiveSessions();
+
         Session session = Session.builder()
                 .user(user)
-                .createTime(LocalDateTime.now())
+                .startTime(LocalDateTime.now())
                 .status(SessionStatus.Active)
                 .sessionId(UUID.randomUUID().toString())
                 .build();
         return sessionRepository.save(session);
+    }
+
+    private void inactiveSessions(){
+        List<Session> sessions = sessionRepository.findAll();
+        for (Session session: sessions){
+            session.setStatus(SessionStatus.Inactive);
+            session.setEndTime(LocalDateTime.now());
+            sessionRepository.save(session);
+        }
     }
 
     @Override

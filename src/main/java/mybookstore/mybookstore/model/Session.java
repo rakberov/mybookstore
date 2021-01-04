@@ -27,5 +27,6 @@ public class Session {
     private User user;
     @Enumerated(value = EnumType.STRING)
     private SessionStatus status;
-    private LocalDateTime createTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 }
