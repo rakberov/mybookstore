@@ -45,6 +45,17 @@
                 <tr>
                     <td th:text="${book.description}"></td>
                 </tr>
+                <tr>
+                    <td th:text="${book.getRating()}"></td>
+                </tr>
+
+                <form th:action="@{/book/addToCard(isbn=${book.isbn})}" method="post">
+                    <td class="center">
+                        <input type="submit" value="Add to Card" style="background-color: green; color: white">
+                    </td>
+
+                </form>
+
             </table>
         </td>
     </tr>

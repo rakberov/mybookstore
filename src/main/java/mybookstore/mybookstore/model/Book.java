@@ -12,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,6 +43,16 @@ public class Book {
     @NotNull
     private Genre genre;
     private String imageName;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BookReview> reviews = new ArrayList<>();
 
+    public BigDecimal getRating() {
+        if (reviews.isEmpty()) return null;
 
+        BigDecimal totalRating = BigDecimal.ZERO;
+        for(BookReview review: reviews)
+            totalRating = totalRating.add(review.getRating());
+
+        return totalRating.divide(BigDecimal.valueOf(reviews.size()));
+    }
 }
