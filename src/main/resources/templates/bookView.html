@@ -61,5 +61,43 @@
     </tr>
 
 </table>
+<br><br>
+<h2 class="center">Review Details</h2>
+
+<table class="center">
+    <tr th:id="${review.id}" th:each="review : ${book.reviews}">
+        <td>
+            <table class="center">
+                <tr>
+                    <td th:text="${'Username: ' + review.getUser().email}" style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td th:text="${'Rating: ' + review.rating}" style="font-weight: bold"></td>
+                </tr>
+                <tr>
+                    <td th:text="${review.comment}"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<form th:action="@{/book/review}" th:object="${review}" method="post" class="center">
+    <table class="center">
+        <tr>
+            <td>Rate</td>
+            <td><input type="text" th:field="*{rating}"></td>
+        </tr>
+        <tr>
+            <td>Comment</td>
+            <td><input type="text" th:field="*{comment}"></td>
+        </tr>
+        <tr>
+            <td class="center">
+                <input type="submit" value="Review">
+                <input type="submit" value="Reset">
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>
