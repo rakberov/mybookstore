@@ -4,8 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mybookstore.mybookstore.exception.NotFoundException;
 import mybookstore.mybookstore.model.Book;
+import mybookstore.mybookstore.model.BookReview;
+import mybookstore.mybookstore.model.Session;
+import mybookstore.mybookstore.model.User;
 import mybookstore.mybookstore.repository.BookRepository;
 import mybookstore.mybookstore.service.BookService;
+import mybookstore.mybookstore.service.SessionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +20,8 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    private final SessionService sessionService;
+
 
     @Override
     public void create(Book book) {
@@ -69,5 +75,20 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getAllBook() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public void review(String isbn, BookReview review) {
+        Book book = bookRepository.findByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException("isbn: " + isbn + " not found"));
+
+        Session session = sessionService.findActiveSession();
+        User user = session.getUser();
+        review.setUser(user);
+        review.setBook(book);
+        List<BookReview> reviews = book.getReviews();
+        reviews.add(review);
+        book.setReviews(reviews);
+        bookRepository.save(book);
     }
 }

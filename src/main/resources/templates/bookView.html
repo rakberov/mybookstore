@@ -28,25 +28,25 @@
         <td>
             <table>
                 <tr>
-                    <td th:text="${book.name}"></td>
+                    <td th:text="${'Name: ' + book.name}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${'by ' + book.author}"></td>
+                    <td th:text="${'Author: ' + book.author}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${book.price + ' USD'}"></td>
+                    <td th:text="${'Price: ' + book.price + ' USD'}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${book.pageSize + ' pages'}"></td>
+                    <td th:text="${'Pages: ' + book.pageSize + ' pages'}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${book.publishDate + ' date'}"></td>
+                    <td th:text="${'Date: ' + book.publishDate}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${book.description}"></td>
+                    <td th:text="${'Desc: ' + book.description}"></td>
                 </tr>
                 <tr>
-                    <td th:text="${book.getRating()}"></td>
+                    <td th:text="${'Rating: ' + book.getRating()}"></td>
                 </tr>
 
                 <form th:action="@{/book/addToCard(isbn=${book.isbn})}" method="post">
@@ -81,7 +81,7 @@
         </td>
     </tr>
 </table>
-<form th:action="@{/book/review}" th:object="${review}" method="post" class="center">
+<form th:action="@{/book/review(isbn=${book.isbn})}" th:object="${review}" method="post" class="center">
     <table class="center">
         <tr>
             <td>Rate</td>
@@ -89,7 +89,10 @@
         </tr>
         <tr>
             <td>Comment</td>
-            <td><input type="text" th:field="*{comment}"></td>
+            <td><label>
+                <textarea style="width: 300px; height: 100px" th:field="*{comment}"></textarea>
+            </label></td>
+
         </tr>
         <tr>
             <td class="center">

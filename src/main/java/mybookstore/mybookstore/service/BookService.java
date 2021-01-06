@@ -1,6 +1,7 @@
 package mybookstore.mybookstore.service;
 
 import mybookstore.mybookstore.model.Book;
+import mybookstore.mybookstore.model.BookReview;
 
 import java.util.List;
 
@@ -16,6 +17,6 @@ public interface BookService {
 
     List<Book> getAllBook();
 
-
+    void review(String isbn, BookReview review);
 
 }

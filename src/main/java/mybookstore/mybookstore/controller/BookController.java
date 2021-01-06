@@ -2,6 +2,7 @@ package mybookstore.mybookstore.controller;
 
 import lombok.RequiredArgsConstructor;
 import mybookstore.mybookstore.model.Book;
+import mybookstore.mybookstore.model.BookReview;
 import mybookstore.mybookstore.model.User;
 import mybookstore.mybookstore.service.BookService;
 import mybookstore.mybookstore.service.UserService;
@@ -48,6 +49,14 @@ public class BookController {
     public String view(Model model, @RequestParam("isbn") String isbn) {
         Book book = bookService.getByIsbn(isbn);
         model.addAttribute("book", book);
+        model.addAttribute("review", new BookReview());
         return "bookView";
+    }
+
+    @PostMapping(value = "/review")
+    public String review(@RequestParam("isbn") String isbn,
+                         @ModelAttribute BookReview review) {
+        bookService.review(isbn, review);
+        return "redirect:/home";
     }
 }
