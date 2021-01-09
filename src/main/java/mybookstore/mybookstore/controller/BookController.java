@@ -59,4 +59,10 @@ public class BookController {
         bookService.review(isbn, review);
         return "redirect:/home";
     }
+
+    @PostMapping(value = "/addToCart")
+    public String addToCart(@RequestParam("isbn") String isbn) {
+        bookService.addToCart(isbn);
+        return "redirect:/home";
+    }
 }

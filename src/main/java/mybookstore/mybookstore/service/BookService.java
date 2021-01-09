@@ -19,4 +19,6 @@ public interface BookService {
 
     void review(String isbn, BookReview review);
 
+    void addToCart(String isbn);
+
 }

@@ -3,11 +3,9 @@ package mybookstore.mybookstore.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mybookstore.mybookstore.exception.NotFoundException;
-import mybookstore.mybookstore.model.Book;
-import mybookstore.mybookstore.model.BookReview;
-import mybookstore.mybookstore.model.Session;
-import mybookstore.mybookstore.model.User;
+import mybookstore.mybookstore.model.*;
 import mybookstore.mybookstore.repository.BookRepository;
+import mybookstore.mybookstore.repository.CartRepository;
 import mybookstore.mybookstore.service.BookService;
 import mybookstore.mybookstore.service.SessionService;
 import org.springframework.stereotype.Service;
@@ -21,6 +19,7 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final SessionService sessionService;
+    private final CartRepository cartRepository;
 
 
     @Override
@@ -79,6 +78,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void review(String isbn, BookReview review) {
+        log.info("review.start for isbn {}", isbn);
+
         Book book = bookRepository.findByIsbn(isbn)
                 .orElseThrow(() -> new NotFoundException("isbn: " + isbn + " not found"));
 
@@ -90,5 +91,26 @@ public class BookServiceImpl implements BookService {
         reviews.add(review);
         book.setReviews(reviews);
         bookRepository.save(book);
+
+        log.info("review.end for isbn {}", isbn);
+    }
+
+    @Override
+    public void addToCart(String isbn) {
+        log.info("addToCart.start for isbn {}", isbn);
+
+        Book book = bookRepository.findByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException("isbn: " + isbn + " not found"));
+        Session session = sessionService.findActiveSession();
+        User user = session.getUser();
+
+        Cart cart = cartRepository.findByUser(user).orElse(new Cart());
+        cart.setUser(user);
+        List<Book> books = cart.getBooks();
+        books.add(book);
+        cart.setBooks(books);
+        cartRepository.save(cart);
+
+        log.info("addToCart.end for isbn {}", isbn);
     }
 }
