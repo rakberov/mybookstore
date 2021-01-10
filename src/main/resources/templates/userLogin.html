@@ -10,6 +10,16 @@
             margin: 0 auto;
             text-align: -webkit-center;
         }
+        .button{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+        }
     </style>
 
 </head>
@@ -30,16 +40,13 @@
             <td>Password</td>
             <td><input type="password" th:name="password" placeholder="Password"></td>
         </tr>
-        <tr>
-        <td class="center">
-            <input type="submit" value="Login">
-            <input type="reset" value="Reset">
-        </td>
-        </tr>
 
     </table>
+    <div class="center">
+        <input class="button" type="submit" value="Login">
+        <input class="button" type="reset" value="Reset">
+    </div>
 
 </form>
-
 </body>
 </html>

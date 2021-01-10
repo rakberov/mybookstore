@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+
+    <style>
+    .center {
+        padding: 20px;
+        margin: 0 auto;
+        text-align: -webkit-center;
+    }
+        .button{
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+        }
+    </style>
+
+</head>
+<body>
+
+<th:block th:include="/header"></th:block>
+
+<h1 class="center"> Book management </h1>
+<div class="center">
+    <a class="button" th:href="@{/bookCreate}">Create</a>
+
+    &nbsp;
+
+    <a class="button" th:href="@{/bookUpdate}">Update</a>
+</div>
+
+
+</body>
+</html>

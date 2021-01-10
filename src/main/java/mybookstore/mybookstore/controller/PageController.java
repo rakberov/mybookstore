@@ -35,6 +35,11 @@ public class PageController {
         return "userLogin";
     }
 
+    @GetMapping(value = {"/bookPage"})
+    public String bookPage(Model model) {
+        return "bookPage";
+    }
+
     @GetMapping(value = {"/bookCreate"})
     public String bookCreate(Model model) {
         model.addAttribute("book", new Book());
@@ -47,3 +52,4 @@ public class PageController {
         return "bookUpdate";
     }
 }
+

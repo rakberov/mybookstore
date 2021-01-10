@@ -14,7 +14,7 @@
         background-color: #4CAF50;
         border: none;
         color: white;
-        padding: 12px 24px;
+        padding: 12px 20px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -74,16 +74,15 @@
             <td>Genre</td>
             <td><input type="text" th:field="${book.genre}"></td>
         </tr>
-
-
-        <tr>
-            <td>
-                <input class="button" type="submit" name="action" value="Update">
-                <input class="button" type="submit" name="action" value="Delete">
-            </td>
-        </tr>
-
     </table>
+
+
+       <div>
+           <input class="button" type="submit" name="action" value="Update">
+           <input class="button" type="submit" name="action" value="Delete">
+           <input class="button" type="reset" value="Reset">
+       </div>
+
 </form>
 </body>
 </html>
